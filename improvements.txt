@@ -1,0 +1,20 @@
+improvements.txt
+
+[]-[] = [-|/|+]-[1|2|3], where:
+	- = Not started
+	/ = In Progress
+	+ = Done
+	1 = Priority 1 (higher priority)
+	2 = Priority 2 (medium priority)
+	3 = Priority 3 (low priority)
+
+
+[+]-[1] - Add usage/help
+[-]-[1] - Add docstrings
+[/]-[1] - Appropriate Comments
+[-]-[3] - Possibility of performing a python port scan, rather than nmap's
+[-]-[3] - Integration with pcap analysis (Maltego's SniffMyPackets)
+[-]-[2] - Provide target network as command-line arguments
+[-]-[3] - Make saving hosts discovered to file optional
+[-]-[2] - Provide means for choosing NIC as command-line argument
+[-]-[3] - Threading?
