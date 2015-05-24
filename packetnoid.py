@@ -1,9 +1,9 @@
-#!/user/bin/env python
+#!/usr/bin/env python
 
 # Imports
 import datetime
 import os
-import shlex
+#import shlex
 import subprocess
 import sys
 import time
@@ -16,7 +16,7 @@ def how_to():
   print("Usage:")
   print("  Simply run")
   print("    \"python packetnoid.py\"")
-  print("---")
+  print("[-0--<^_^>--0-]")
 
 
 # Simmple function which uses subprocess to send nmap a command to 
@@ -71,7 +71,7 @@ def preparer(p1_list):
 
     ip_str = ''.join(new_ip_list)
 
-    raw_cmd = "sudo /usr/sbin/tcpdump -i wlan0 -lenx -X -s 0 -w "\
+    raw_cmd = "/usr/sbin/tcpdump -i wlan0 -lenx -X -s 0 -w "\
       + os.getcwd() + "/tcpdump-" + today + ".pcap " + ip_str
     
     print("[+] Done!")
@@ -87,28 +87,33 @@ def preparer(p1_list):
 
 
 def monitore(raw_cmd):
-  try:
-    gzip = "gzip", "-9" + os.getcwd() + "/tcpdump-" + today + ".pcap"
-    print("[+] Firing tcpdump now.")
-    p2 = subprocess.Popen(raw_cmd, stdout=subprocess.PIPE, \
-      stderr=subprocess.STDOUT, shell=True)
-    
-    # Putting the script to sleep for 24 hours whilst tcpdump
-    # runs on the background.
-    # time.sleep(86400)
-    time.sleep(15) 
-    p2.terminate()
-    
+  while True:
     try:
-      print("[+] Zipping pcap file.")
-      p3 = subprocess.Popen(gzip, stdout=subprocess.PIPE, shell=True)
-      p3.terminate()
-      print("[+] Done!\n")
-    except Exception:
-      sys.exit("[-] I have managed to run tcpdump, but could not zip the file")
+      f_name = os.getcwd() + "/tcpdump-" + today + ".pcap"
 
-  except Exception:
-      sys.exit("[-] Could not run the actual tcpdump command.") 
+      f_handle = open(f_name, 'wb')
+
+      print("[+] Firing tcpdump now.")
+      p2 = subprocess.Popen(raw_cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE, \
+                         stderr=subprocess.STDOUT, shell=True)
+
+      # Putting the script to sleep for 24 hours whilst tcpdump
+      # runs on the background.
+      # time.sleep(86400)
+      time.sleep(5)
+      p2.terminate()
+      f_handle.close()
+      
+      # try:
+      #   print("[+] Zipping pcap file.")
+      #   p3 = subprocess.Popen(gzip, stdout=subprocess.PIPE, shell=True)
+      #   #p3.terminate()
+      #   print("[+] Done!\n")
+      # except Exception:
+      #   sys.exit("[-] I have managed to run tcpdump, but could not zip the file")
+
+    except Exception:
+        sys.exit("[-] Could not run the actual tcpdump command.") 
 
 
 def main():
@@ -137,7 +142,7 @@ def main():
     sys.exit("[-] Main function could not call monitore().")
 
 if __name__ != "__main__":
-  print("[!] NO WAY!")
+  sys.exit("[!] NO WAY!")
 else:  
   main()
 
