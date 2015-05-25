@@ -91,18 +91,14 @@ def monitore(raw_cmd):
     try:
       f_name = os.getcwd() + "/tcpdump-" + today + ".pcap"
 
-      f_handle = open(f_name, 'wb')
-
       print("[+] Firing tcpdump now.")
       p2 = subprocess.Popen(raw_cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE, \
                          stderr=subprocess.STDOUT, shell=True)
 
       # Putting the script to sleep for 24 hours whilst tcpdump
       # runs on the background.
-      # time.sleep(86400)
-      time.sleep(5)
+      time.sleep(15)
       p2.terminate()
-      f_handle.close()
       
       # try:
       #   print("[+] Zipping pcap file.")
@@ -112,6 +108,8 @@ def monitore(raw_cmd):
       # except Exception:
       #   sys.exit("[-] I have managed to run tcpdump, but could not zip the file")
 
+      print("[+] Done! tcpdump has run successfully")
+      print("[+] pcap file saved as \"%s\".\n" % f_name)
     except Exception:
         sys.exit("[-] Could not run the actual tcpdump command.") 
 
@@ -120,7 +118,7 @@ def main():
   if len(sys.argv) > 1:  
     sys.exit(how_to())
 
-  print("The default network to be scanned is:")
+  print("\nThe default network to be scanned is:")
   print("  192.168.1.0/24")
   print("\n----------------------------------------------------")
   
