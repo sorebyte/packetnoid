@@ -145,12 +145,3 @@ if __name__ != "__main__":
   sys.exit("[!] NO WAY!")
 else:  
   main()
-
-
-
-
-
-
-
-
-
