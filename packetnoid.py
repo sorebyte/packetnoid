@@ -87,7 +87,7 @@ def preparer(p1_list):
 
 
 def monitore(raw_cmd):
-  while True:
+  #while True:
     try:
       f_name = os.getcwd() + "/tcpdump-" + today + ".pcap"
 
