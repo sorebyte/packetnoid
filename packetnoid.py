@@ -97,7 +97,7 @@ def monitore(raw_cmd):
 
       # Putting the script to sleep for 24 hours whilst tcpdump
       # runs on the background.
-      time.sleep(15)
+      time.sleep(86400)
       p2.terminate()
       
       # try:
@@ -108,7 +108,7 @@ def monitore(raw_cmd):
       # except Exception:
       #   sys.exit("[-] I have managed to run tcpdump, but could not zip the file")
 
-      print("[+] Done! tcpdump has run successfully")
+      print("[+] Done! tcpdump has run successfully.")
       print("[+] pcap file saved as \"%s\".\n" % f_name)
     except Exception:
         sys.exit("[-] Could not run the actual tcpdump command.") 
