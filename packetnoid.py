@@ -71,7 +71,7 @@ def preparer(p1_list):
 
     ip_str = ''.join(new_ip_list)
 
-    raw_cmd = "/usr/sbin/tcpdump -i wlan0 -lenx -X -s 0 -w "\
+    raw_cmd = "sudo /usr/sbin/tcpdump -i wlan0 -lenx -X -s 0 -w "\
       + os.getcwd() + "/tcpdump-" + today + ".pcap " + ip_str
     
     print("[+] Done!")
